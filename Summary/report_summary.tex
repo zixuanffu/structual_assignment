@@ -37,19 +37,65 @@
 % \setcounter{page}{1}
 
 \section{Summary}
-The paper by \citet{todd2020dynamic} examines the individual's choice of schooling or working at each period as the optimal solution to maximizing lifetime utility. This falls under the classical single-agent dynamic problem with finite periods. The dynamic decision at each period involves the individual's education and occupation choice. The state that evolves over time includes an individual's schooling/working experience, which grows over time, cognitive ability, which is time-invariant, and the novel addition of individual personality measured in five dimensions, which also develops over time. While the state is (noisily) observed, the model incorporates an unobserved element -- latent type, which interacts with the observed state and the utility functions. By establishing a comprehensive model that includes cognitive ability, personality traits, and latent type, the authors aim to answer how personality evolves over time in response to age and experience. 
+The paper by \citet{todd2020dynamic} examines the individual's choice of
+schooling or working at each period as the optimal solution to maximizing
+lifetime utility. This falls under the classical single-agent dynamic problem
+with finite periods. The dynamic decision at each period involves the
+individual's education and occupation choice. The state that evolves over time
+includes an individual's schooling/working experience, which grows over time,
+cognitive ability, which is time-invariant, and the novel addition of
+individual personality measured in five dimensions, which also develops over
+time. While the state is (noisily) observed, the model incorporates an
+unobserved element -- latent type, which interacts with the observed state and
+the utility functions. By establishing a comprehensive model that includes
+cognitive ability, personality traits, and latent type, the authors aim to
+answer how personality evolves over time in response to age and experience.
 
-Secondly, although the model restricts the channels through which one variable affects another, the estimation of model parameters helps quantify the magnitude of these impacts. For example, the latent type transitions to the next period type depending on the current type and personality. One can test whether the latent type is time-variant using the parameter estimates. Lastly, the model allows the simulation of two different education policies (tuition reduction and compulsory schooling). While most of the identification results rely on previous literature, notably \cite{hu2012nonparametric}, the paper imposes further restrictions as in \citet{hu2017simple} to identify the probability distribution of CCP, the law of motion of latent type k, and the law of motion of the observed state. Once the nonparametric identification of these probabilities is established, the paper uses the simulated methods of moments to estimate all the model parameters, although the identification arguments are challenging to establish when using moment-based estimators.
+Secondly, although the model restricts the channels through which one variable
+affects another, the estimation of model parameters helps quantify the
+magnitude of these impacts. For example, the latent type transitions to the
+next period type depending on the current type and personality. One can test
+whether the latent type is time-variant using the parameter estimates. Lastly,
+the model allows the simulation of two different education policies (tuition
+reduction and compulsory schooling). While most of the identification results
+rely on previous literature, notably \cite{hu2012nonparametric}, the paper
+imposes further restrictions as in \citet{hu2017simple} to identify the
+probability distribution of CCP, the law of motion of latent type k, and the
+law of motion of the observed state. Once the nonparametric identification of
+these probabilities is established, the paper uses the simulated methods of
+moments to estimate all the model parameters, although the identification
+arguments are challenging to establish when using moment-based estimators.
 
-The next section will present the structural model in a simplified way and discuss the estimation and simulation exercises. Afterwards, I will try to link the identification arguments in the paper to what we learned in class. While it seems to me that in the paper, the identification is independent of estimation, I hope to establish a connection between the two and how one can aid the other. Lastly, to emphasize the role of unobserved heterogeneity, I will summarize cases where there is no unobserved heterogeneity (latent type), time-invariant, and time-variant latent type.
+The next section will present the structural model in a simplified way and
+discuss the estimation and simulation exercises. Afterwards, I will try to link
+the identification arguments in the paper to what we learned in class. While it
+seems to me that in the paper, the identification is independent of estimation,
+I hope to establish a connection between the two and how one can aid the other.
+Lastly, to emphasize the role of unobserved heterogeneity, I will summarize
+cases where there is no unobserved heterogeneity (latent type), time-invariant,
+and time-variant latent type.
 
 \section{Model}
-
-\paragraph{Choice variable} As briefly introduced in the last section, an individual chooses whether to go to school / work in blue collar/ white collar job in each period. The decision is made to maximize lifetime utililty. 
-The instant utility function of choosing a choice $m$ is denoted by $u_m$ and the value function of $m$ is $V_m$.  
-\paragraph{Observed state}
-\paragraph{Latent type}
+I simplify the model by abstracting from specific parametric form of all the
+functions (utility function, transition probability specification etc.). Since
+this is a classical single agent dynamic problem with finite horizons, I first
+clarify the key variables and explain how each variable influence one another
+with some visualization.
+\paragraph{Choice variable} An individual chooses whether to go to school / work in blue collar/ white
+collar job in each period. Since this is a lifetime decision, the choice is a
+sequence of $d(15),d(16),\ldots,d(49)$ starting from age 15.
+\paragraph{Observed state} Among the observed state variables, there are constant ones such as family
+background $z$ and cognitive ability $c$. \footnote{Even til now, I still do
+    not understand the reason why cognitive ability is set to be time-invariant.}
+The rest are schooling $g(a)$ and working experience $x_1(a),x_2(a)$ and the 5
+personality traits $\theta(a)$.
+\paragraph{Latent type} The paper adds unobserved heterogeneity to the model because it allows the
+model to better simulate the hypothetical policies as is the case in reality.
+Here the latent type is denoted by $k(a)$ assuming that the type changes over
+time. However, the specification of the transition nests time invariant latent
+type which can be tested using the estimate.
 \section{Discussion}
+This section answers the question of what role the latent heterogeneity plays.
 
 \pagebreak \newpage \bibliography{../References/ref.bib}
 
