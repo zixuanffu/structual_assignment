@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 \usepackage{fullpage,graphicx,psfrag,amsmath,amsfonts,verbatim}
 \usepackage[small,bf]{caption}
 \usepackage{amsthm}
@@ -18,7 +18,7 @@
 \bibliographystyle{apalike}
 % \setlength{\parindent}{0pt} % remove the automatic indentation
 
-\title{A dynamic model of personality, schooling, and occupational choice (ToddZhang2020QE)}
+\title{\textbf{A dynamic model of personality, schooling, and occupational choice}}
 \author{Fu Zixuan}
 \date{\today}
 
@@ -47,7 +47,7 @@ cognitive ability, which is time-invariant, and the novel addition of
 individual personality measured in five dimensions, which also develops over
 time. While the state is (noisily) observed, the model incorporates an
 unobserved element -- latent type, which interacts with the observed state and
-the utility functions. By establishing a comprehensive model that includes
+the utility functions. By establishing a rich model that includes
 cognitive ability, personality traits, and latent type, the authors aim to
 answer how personality evolves over time in response to age and experience.
 
@@ -94,6 +94,27 @@ model to better simulate the hypothetical policies as is the case in reality.
 Here the latent type is denoted by $k(a)$ assuming that the type changes over
 time. However, the specification of the transition nests time invariant latent
 type which can be tested using the estimate.
+
+The above mentioned variables can be summarized in the following figure~\ref{fig:}
+\begin{figure}
+    \centering
+    \includegraphics[]{../Figures/viz.jpg}
+\end{figure}
+
+Going from bottom to top, the current type depends on the previous type via a transition probability matrix. The probability matrix depends on the current personality $\theta(a)$ and age $a$ as well as some shock $\eta(a)$. Therefore for every transition from $a$ to $a+1$ there is a corresponding transition matrix $L(a)$. This latent type plays a role because it is in the utility function such that ceteris paribus current utility from choice $m$ $u_m()$ will be different for different types. This is the only channel that the type affects the dynamic decision. 
+We now focus on time changing state variables, personality $\theta(a)$ and experience $g,x_1,x_2$. For personality, the current $\theta(a)$ depends on the very initial $\theta(15)$ as well as age $a$ and years of schooling. This is where model restrictions manifest itself that only years of schooling can directly affect personality while working experience does not. It is the paper/author's assumption such that later we'll see the education policy that affect years of schooling will impact personality as well. Interestingly, personality is noisily observed in the sense that while the true personlaity $\theta(a) = f(a,g(a),)$ the 
+We now focus on time changing state variables, personality $\theta(a)$ and experience $g,x_1,x_2$. For personality, the current $\theta(a)$ depends on the very initial $\theta(15)$ as well as age $a$ and years of schooling. This is where model restrictions manifest itself that only years of schooling can directly affect personality while working experience does not. It is the paper/author's assumption such that later we'll see the education policy that affect years of schooling will impact personality as well. Interestingly, personality is noisily observed in the sense that while the true personlaity $\theta(a) = f(a,g(a),)$ the 
+We now focus on time changing state variables, personality $\theta(a)$ and experience $g,x_1,x_2$. For personality, the current $\theta(a)$ depends on the very initial $\theta(15)$ as well as age $a$ and years of schooling. This is where model restrictions manifest itself that only years of schooling can directly affect personality while working experience does not. It is the paper/author's assumption such that later we'll see the education policy that affect years of schooling will impact personality as well. Interestingly, personality is noisily observed in the sense that while the true personlaity $\theta(a) = f(a,g(a),\theta(a))$ evolves in a deterministic way, the observed personality $\theta^M(a) = \theta(a) + \zeta(a)$ is subject to some measurement error. 
+For the rest of the variables, evolution is straightforward in the sense that the variable increases if the individual chooses that option $m_0,m_1,m_2$. That is 
+$g(a+1) = g(a) + d_0(a)$, $x_1(a+1) = x_1(a) + d_1(a)$, $x_2(a+1) = x_2(a) + d_2(a)$ where $d_0,d_1,d_2$ are indicator functions of the choice $m_0,m_1,m_2$.
+
+Now we are ready to establish (restate) the single agenet dynamic framework that has its root in \cite{rust}.
+The choice at each period is obtained by maximizing the lifetime utility. The framework is similar to that of \cite{rust}.
+Let us denote the alternative specific value function as $V_m(a, s(a))$ where $m$ is the choice. Then value function for scenario $(a, s(a))$ is $V(a, s(a)) = \max_m V_m(a, s(a))$. 
+To be more specific, the alternative specific value function takes the form os 
+$$V_m(a, s(a)) = \tilde{u_m(a, s(a))} + \delta E[V(a+1, s(a+1))|s(a), d_m(a)]$$
+where $u_m(a, s(a))$ is the utility function that 
+
 \section{Discussion}
 This section answers the question of what role the latent heterogeneity plays.
 
