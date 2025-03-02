@@ -1,0 +1,38 @@
+\begin{thebibliography}{}
+
+\bibitem[Bonhomme et~al., 2019]{bonhomme2019distributional}
+Bonhomme, S., Lamadon, T., and Manresa, E. (2019).
+\newblock A distributional framework for matched employer employee data.
+\newblock {\em Econometrica}, 87(3):699--739.
+
+\bibitem[Hu, 2008]{hu2008identification}
+Hu, Y. (2008).
+\newblock Identification and estimation of nonlinear models with misclassification error using instrumental variables: A general solution.
+\newblock {\em Journal of Econometrics}, 144(1):27--61.
+
+\bibitem[Hu and Shum, 2012]{hu2012nonparametric}
+Hu, Y. and Shum, M. (2012).
+\newblock Nonparametric identification of dynamic models with unobserved state variables.
+\newblock {\em Journal of Econometrics}, 171(1):32--44.
+
+\bibitem[Hu et~al., 2017]{hu2017simple}
+Hu, Y., Shum, M., Tan, W., and Xiao, R. (2017).
+\newblock A simple estimator for dynamic models with serially correlated unobservables.
+\newblock {\em Journal of Econometric Methods}, 6(1):20150011.
+
+\bibitem[Postel-Vinay and Robin, 2002]{postel2002equilibrium}
+Postel-Vinay, F. and Robin, J.-M. (2002).
+\newblock Equilibrium wage dispersion with worker and employer heterogeneity.
+\newblock {\em Econometrica}, 70(6):2295--2350.
+
+\bibitem[Rust, 1987]{rust1987optimal}
+Rust, J. (1987).
+\newblock Optimal replacement of gmc bus engines: An empirical model of harold zurcher.
+\newblock {\em Econometrica: Journal of the Econometric Society}, pages 999--1033.
+
+\bibitem[Todd and Zhang, 2020]{todd2020dynamic}
+Todd, P.~E. and Zhang, W. (2020).
+\newblock A dynamic model of personality, schooling, and occupational choice.
+\newblock {\em Quantitative Economics}, 11(1):231--275.
+
+\end{thebibliography}

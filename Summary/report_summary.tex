@@ -126,15 +126,35 @@ Focusing only on the choice variable $Y_t$ and the latent type $X^*_t$, and take
 \end{enumerate}
 The second assumption can be graphically represented in figure~\ref{fig:ass}. The assumption is quite weak and can be verified with the structural model. 
 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Figures/ass.jpg}
+    \caption{Limited feedback conditions}
+    \label{fig:ass}
+    \end{figure}
+
 Moreover, the structural model in the paper imposes more restrction on the feedback condition such that it satisfy an even more restrictive limited feedback condition presented in \citet{hu2017simple}. That is 
 \begin{enumerate}
     \item Current choice $d(a)$ only depends on current state $s(a)$ and type $k(a)$: $\Pr(d(a)|s(a),k(a),d(a-1),s(a-1),k(a-1))=\Pr(d(a)|s(a),k(a))$
-\item Current type only depends on last type, current state and last state: $\Pr(k(a)|s(a),s(a-1),k(a-1),d(a-1))=\Pr(k(a)|s(a),s(a-1),k(a-1))$
+    \item Current type $k(a)$ only depends on last type $k(a-1)$, current state $s(a)$ and last state $s(a-1)$: $\Pr(k(a)|s(a),s(a-1),k(a-1),d(a-1))=\Pr(k(a)|s(a),s(a-1),k(a-1))$
 \end{enumerate}
-
+They can be graphically represented in figure~\ref{fig:ass} as well, which is clearly more restrictive than and nested in the \citet{hu2012nonparametric} assumptions. Under this setting, we can identify $Y_3|X_2^*$ requiring only 3 periods of observations.  In fact, this is almost the same as \citet{hu2008identification}. To see this, let's label choice $Y$, state $M$ and latent type $X^*$
+\begin{enumerate}
+    \item Step 1: first decompose the probability into three components.
+$$f(Y_2, M_2 \mid M_1, Y_1) = \sum_{x_2^*} f(Y_3 \mid M_3,M_2, x_2^*) f(M_3 Y_2 \mid m_2, x_2^*) f(x_2^* \mid M_2, Y_1)$$
+\item Step 2: based on the above, we can decompose two matrices
+$$P(Y_3, m_3 ,y_2 \mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_1 (P(y_2 \mid m_3, m_2, X_2^*))D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$$
+$$P(Y_3, m_3\mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$$
+\end{enumerate}
+Taking the inverse of second matrix, we can recover the conditional choice probability $P(Y_3 \mid m_3, m_2, x_2^*)$ and the transition probability $P(X_2^*|m_2,Y_1)$. 
 
 \section{Discussion}
-This section answers the question of what role the latent heterogeneity plays.
+As pointed out during the lecture on \citet{postel2002equilibrium}, the specialized structure of the model also satisfied the assumptions of the dynamic model in \citet{bonhomme2019distributional}. Therefore, one can use the latter to test the whether the more specialized structural model holds (whether the specialized assumptions are valid).
+
+In this paper, the interaction seems to be the other way around. The structual model produces estiamtes such that we can test whether the latent type is evolving or static, thus facilitating the choice of arguments to use to prove non parametric identification. However, even though it is shown that it is theoretically possible to get estimate for the CCP from \citet{hu2017simple} it is empirically difficult since the state space $(a,s(a))$ is very large.
+
+1. the ordering
+2. the measurement error of the personality type.
 
 \pagebreak \newpage \bibliography{../References/ref.bib}
 
