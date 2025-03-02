@@ -1,4 +1,6 @@
 \documentclass[12pt]{article}
+\usepackage{setspace}
+\linespread{1.2}
 \usepackage{fullpage,graphicx,psfrag,amsmath,amsfonts,verbatim}
 \usepackage[small,bf]{caption}
 \usepackage{amsthm}
@@ -20,7 +22,7 @@
 
 \title{\textbf{A dynamic model of personality, schooling, and occupational choice}}
 \author{Fu Zixuan}
-\date{\today}
+\date{March 2, 2025}
 
 \begin{document}
 \maketitle
@@ -140,21 +142,23 @@ Moreover, the structural model in the paper imposes more restrction on the feedb
 \end{enumerate}
 They can be graphically represented in figure~\ref{fig:ass} as well, which is clearly more restrictive than and nested in the \citet{hu2012nonparametric} assumptions. Under this setting, we can identify $Y_3|X_2^*$ requiring only 3 periods of observations.  In fact, this is almost the same as \citet{hu2008identification}. To see this, let's label choice $Y$, state $M$ and latent type $X^*$
 \begin{enumerate}
-    \item Step 1: first decompose the probability into three components.
-$$f(Y_2, M_2 \mid M_1, Y_1) = \sum_{x_2^*} f(Y_3 \mid M_3,M_2, x_2^*) f(M_3 Y_2 \mid m_2, x_2^*) f(x_2^* \mid M_2, Y_1)$$
+    \item Step 1: first decompose the probability into three components
+$f(Y_2, M_2 \mid M_1, Y_1) = \sum_{x_2^*} f(Y_3 \mid M_3,M_2, x_2^*) f(M_3 Y_2 \mid m_2, x_2^*) f(x_2^* \mid M_2, Y_1)$
 \item Step 2: based on the above, we can decompose two matrices
-$$P(Y_3, m_3 ,y_2 \mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_1 (P(y_2 \mid m_3, m_2, X_2^*))D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$$
-$$P(Y_3, m_3\mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$$
+$P(Y_3, m_3 ,y_2 \mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_1 (P(y_2 \mid m_3, m_2, X_2^*))D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$ and 
+$P(Y_3, m_3\mid m_2, Y_1) = P(Y_3 \mid m_3, m_2, X_2^*) D_2(P(m_3\mid m_2,X_2^*))P(X_2^*|m_2,Y_1)$
 \end{enumerate}
 Taking the inverse of second matrix, we can recover the conditional choice probability $P(Y_3 \mid m_3, m_2, x_2^*)$ and the transition probability $P(X_2^*|m_2,Y_1)$. 
 
 \section{Discussion}
-As pointed out during the lecture on \citet{postel2002equilibrium}, the specialized structure of the model also satisfied the assumptions of the dynamic model in \citet{bonhomme2019distributional}. Therefore, one can use the latter to test the whether the more specialized structural model holds (whether the specialized assumptions are valid).
+As pointed out during the lecture on \citet{postel2002equilibrium}, the specialized structure of the model also satisfies the assumptions of the dynamic model in \citet{bonhomme2019distributional}. Therefore, one can use the latter to test whether the more specialized structural model holds (i.e., whether the specialized assumptions are valid).
 
-In this paper, the interaction seems to be the other way around. The structual model produces estiamtes such that we can test whether the latent type is evolving or static, thus facilitating the choice of arguments to use to prove non parametric identification. However, even though it is shown that it is theoretically possible to get estimate for the CCP from \citet{hu2017simple} it is empirically difficult since the state space $(a,s(a))$ is very large.
+In this paper, the interaction seems to work in the opposite direction. The structural model produces estimates that allow us to test whether the latent type is evolving or static, thus facilitating the choice of arguments to prove nonparametric identification. However, even though it is theoretically possible to estimate the conditional choice probability (CCP) using \citet{hu2017simple}, it is empirically difficult due to the large state space \( (a, s(a)) \).
 
-1. the ordering
-2. the measurement error of the personality type.
+\paragraph{Work Undone} I have not fully understood the rationale behind the implicit ordering of the latent type, both in \citet{hu2012nonparametric} and \citet{hu2017simple}. While previous work assumed there is a monotonic mapping \( G(f_{Y_{t+1}|y_t,x_t^*}) \) that is monotonic in \( x_t^* \), I will need to read \citet{higgins2024learning} to understand how the labeling issue is addressed under certain assumptions.
+
+Secondly, the personality \( \theta \) is observed with measurement error, which is assumed to be normally distributed in the paper. Are there alternative methods to recover the distribution of \( \theta \)? \footnote{To be discussed. I am not sure I fully understood the suggestion.}
+
 
 \pagebreak \newpage \bibliography{../References/ref.bib}
 

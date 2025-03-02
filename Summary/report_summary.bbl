@@ -5,6 +5,11 @@ Bonhomme, S., Lamadon, T., and Manresa, E. (2019).
 \newblock A distributional framework for matched employer employee data.
 \newblock {\em Econometrica}, 87(3):699--739.
 
+\bibitem[Higgins and Jochmans, 2024]{higgins2024learning}
+Higgins, A. and Jochmans, K. (2024).
+\newblock Learning markov processes with latent variables.
+\newblock {\em Econometric Theory}, pages 1--13.
+
 \bibitem[Hu, 2008]{hu2008identification}
 Hu, Y. (2008).
 \newblock Identification and estimation of nonlinear models with misclassification error using instrumental variables: A general solution.
