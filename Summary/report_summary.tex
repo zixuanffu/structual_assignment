@@ -67,7 +67,7 @@ moments to estimate all the model parameters, although the identification
 arguments are challenging to establish when using moment-based estimators.
 
 The next section will present the structural model in a simplified way and
-discuss the estimation and simulation exercises. Afterwards, I will try to link
+briefly mention the estimation steps. Afterwards, I will try to link
 the identification arguments in the paper to what we learned in class. While it
 seems to me that in the paper, the identification is independent of estimation,
 I hope to establish a connection between the two and how one can aid the other.
@@ -76,55 +76,61 @@ cases where there is no unobserved heterogeneity (latent type), time-invariant,
 and time-variant latent type.
 
 \section{Model}
-I simplify the model by abstracting from specific parametric form of all the
-functions (utility function, transition probability specification etc.). Since
-this is a classical single agent dynamic problem with finite horizons, I first
-clarify the key variables and explain how each variable influence one another
-with some visualization.
-\paragraph{Choice variable} An individual chooses whether to go to school / work in blue collar/ white
-collar job in each period. Since this is a lifetime decision, the choice is a
-sequence of $d(15),d(16),\ldots,d(49)$ starting from age 15.
-\paragraph{Observed state} Among the observed state variables, there are constant ones such as family
-background $z$ and cognitive ability $c$. \footnote{Even til now, I still do
-    not understand the reason why cognitive ability is set to be time-invariant.}
-The rest are schooling $g(a)$ and working experience $x_1(a),x_2(a)$ and the 5
-personality traits $\theta(a)$.
-\paragraph{Latent type} The paper adds unobserved heterogeneity to the model because it allows the
-model to better simulate the hypothetical policies as is the case in reality.
-Here the latent type is denoted by $k(a)$ assuming that the type changes over
-time. However, the specification of the transition nests time invariant latent
-type which can be tested using the estimate.
+I simplify the model by abstracting from the specific parametric form of all the functions (utility function, transition probability specification, etc.). I first clarify the key variables and explain how each variable influences one another with some visualization.
 
-The above mentioned variables can be summarized in the following figure~\ref{fig:}
-\begin{figure}
-    \centering
-    \includegraphics[]{../Figures/viz.jpg}
+\subsection{Variables}
+\paragraph{Choice variable} An individual chooses whether to go to school or work in a blue-collar/white-collar job in each period. Since this is a lifetime decision, the choice is a sequence of $d(15), d(16), \ldots, d(49)$ starting from age 15.
+
+\paragraph{Observed state} Among the observed state variables, there are constant ones such as family background $z$ and cognitive ability $c$. \footnote{Even till now, I still do not understand the reason why cognitive ability is set to be time-invariant.} The rest are schooling $g(a)$, working experience $x_1(a), x_2(a)$, and the 5 personality traits $\theta(a)$.
+
+\paragraph{Latent type} The paper adds unobserved heterogeneity to the model because it allows the model to better simulate hypothetical policies as is the case in reality. Here the latent type is denoted by $k(a)$, assuming that the type changes over time. However, the specification of the transition nests time-invariant latent type, which can be tested using the estimate.
+
+\subsection{Dynamics}
+The above-mentioned variables can be summarized in the following figure~\ref{fig:viz}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{../Figures/viz.jpg}
+\caption{Visualization of the model}
+\label{fig:viz}
 \end{figure}
 
-Going from bottom to top, the current type depends on the previous type via a transition probability matrix. The probability matrix depends on the current personality $\theta(a)$ and age $a$ as well as some shock $\eta(a)$. Therefore for every transition from $a$ to $a+1$ there is a corresponding transition matrix $L(a)$. This latent type plays a role because it is in the utility function such that ceteris paribus current utility from choice $m$ $u_m()$ will be different for different types. This is the only channel that the type affects the dynamic decision. 
-We now focus on time changing state variables, personality $\theta(a)$ and experience $g,x_1,x_2$. For personality, the current $\theta(a)$ depends on the very initial $\theta(15)$ as well as age $a$ and years of schooling. This is where model restrictions manifest itself that only years of schooling can directly affect personality while working experience does not. It is the paper/author's assumption such that later we'll see the education policy that affect years of schooling will impact personality as well. Interestingly, personality is noisily observed in the sense that while the true personlaity $\theta(a) = f(a,g(a),\theta(a))$ evolves in a deterministic way, the observed personality $\theta^M(a) = \theta(a) + \zeta(a)$ is subject to some measurement error. 
-For the rest of the variables, evolution is straightforward in the sense that the variable increases if the individual chooses that option $m_0,m_1,m_2$. That is 
-$g(a+1) = g(a) + d_0(a)$, $x_1(a+1) = x_1(a) + d_1(a)$, $x_2(a+1) = x_2(a) + d_2(a)$ where $d_0,d_1,d_2$ are indicator functions of the choice $m_0,m_1,m_2$.
+\paragraph{Latent type} Going from bottom to top, the current type depends on the previous type via a transition probability matrix. The probability matrix depends on the current personality $\theta(a)$, age $a$, and some shock $\eta(a)$. Therefore, for every transition from $a$ to $a+1$, there is a corresponding transition matrix $L(a)$. This latent type plays a role because it is in the utility function such that, ceteris paribus, current utility from choice $m$, $u_m()$, will be different for different types. This is the only channel through which the type affects the dynamic decision.
 
-Now we are ready to establish (restate) the single agenet dynamic framework that has its root in \cite{rust}.
-The choice at each period is obtained by maximizing the lifetime utility. The framework is similar to that of \cite{rust}.
-For example, defining the utility function as $u(\omega,x)$ where $\omega$ is the state variable and $x$ is the choice variable, the value function is
-$$V(\omega,\nu) = \max_x u(\omega,x) + \nu(x)+\delta E[V(\omega',\nu')|\omega,x]$$
-We can rewrite the value function in terms of continuation value function such that $V(\omgea,\nu)=\max_x \tilde{v}(\omega,x,\nu)$ where $\tilde{v}(\omega,x,\nu)=\tilde{u}(\omega,x)+\nu(x)= u(\omega,x)+\nu(x)+\delta E[V(\omega',\nu')|\omega,x]$. 
-One can establish a clear mapping between the model in the paper and this general framework. 
+\paragraph{Observed state} We now focus on time-changing state variables, personality $\theta(a)$, and experience $g, x_1, x_2$. For personality, the current $\theta(a)$ depends on the very initial $\theta(15)$ as well as age $a$ and years of schooling. This is where model restrictions manifest themselves: only years of schooling can directly affect personality, while working experience does not. It is the paper/author's assumption that later we'll see the education policy that affects years of schooling will impact personality as well. Interestingly, personality is noisily observed in the sense that while the true personality $\theta(a) = f(a, g(a), \theta(a))$ evolves in a deterministic way, the observed personality $\theta^M(a) = \theta(a) + \zeta(a)$ is subject to some measurement error.
 
-I found that the original notation in the paper a bit confusing. For the ease of understanding (for my own purpose), I will rewrite the model in the following way.
-First for simplicity, I ignore the all shock except the preference shock $\epsilon(a,x)$ \footnote{When the agent is making a decision, the personality measurement error $\zeta$ is realized, the latent type transition shock $\eta$ is realized, the wage shock is not realized but agent takes expectation of it.} Therefore, to estba
+For the rest of the variables, evolution is straightforward in the sense that the variable increases if the individual chooses that option $m_0, m_1, m_2$. That is, 
+$g(a+1) = g(a) + d_0(a)$, $x_1(a+1) = x_1(a) + d_1(a)$, $x_2(a+1) = x_2(a) + d_2(a)$, where $d_0, d_1, d_2$ are indicator functions of the choice $m_0, m_1, m_2$.
+
+\subsection{(Parametric) Estimation} Now we are ready to establish (restate) the \textbf{single-agent dynamic framework} that has its root in \cite{rust1987optimal}. The choice at each period is obtained by maximizing the lifetime utility. The framework is similar to that of \cite{rust1987optimal}. For example, defining the utility function as $u(\omega, x)$ where $\omega$ is the state variable and $x$ is the choice variable, the value function is
+$$V(\omega, \nu) = \max_x u(\omega, x) + \nu(x) + \delta E[V(\omega', \nu')|\omega, x].$$
+We can rewrite the value function in terms of the continuation value function such that $V(\omega, \nu) = \max_x \tilde{v}(\omega, x, \nu)$ where $\tilde{v}(\omega, x, \nu) = \tilde{u}(\omega, x) + \nu(x) = u(\omega, x) + \nu(x) + \delta E[V(\omega', \nu')|\omega, x]$. One can establish a clear mapping between the model in the paper and this general framework.
+
+For ease of understanding (for my own purpose), I will rewrite the model in the following way. First, for simplicity, I ignore all shocks except the preference shock $\epsilon(a,s(a), m)$. \footnote{When the agent is making a decision, the personality measurement error $\zeta$ is realized, the latent type transition shock $\eta$ is realized, the wage shock $\xi$ is not realized but the agent takes expectation of it.} Therefore, we have:
 \begin{itemize}
-    \item The state variable $\omega$ is $(a,s(a))$. The choice variable $x$ is $m$ \footnote{$d_m(a)$ is the indicator function of the choice $m$}.
-    \item The utility function $u(\omega,x)$ is the utility from going to sector $m$ which is $u_m(a,s(a))$.
-    \item The continuation value $\tilde{v}(\omega,x,\nu)$ is $\tilde{v}_m(a,s(a))$ where $\tilde{v}_m(a,s(a)) = \tilde{u}_m(a,s(a)) + \nu_m(a,s(a))$.
-    \item The value function $V(\omega,\nu)$ is $V(a,s(a),\nu) = \max_m \tilde{v}_m(a,s(a))$.
-    \item The conditional choice probability is thus $\Pr(d_m(a)=1|a,s(a))=\frac{\exp(\tilde{v}_m(a,s(a)))}{\sum_{m'}\exp(\tilde{v}_{m'}(a,s(a)))}$.
+    \item The state variable $\omega$ is $(a, s(a))$. The choice variable $x$ is $m$. And $d_m(a)$ is the indicator function of the choice $m$.
+    \item The utility function $u(\omega, x)$ is the utility from going to sector $m$, which is $u_m(a, s(a))$.
+    \item The continuation value $\tilde{v}(\omega, x, \nu)$ is $\tilde{v}_m(a, s(a),\epsilon)$ where $\tilde{v}_m(a, s(a),\epsilon) = u_m(a, s(a)) + \delta E[V(a+1, s(a+1), \epsilon')|a, s(a), m] + \epsilon(a, s(a), m)$.
+    \item The value function $V(\omega, \nu)$ is $V(a, s(a), \epsilon) = \max_m \tilde{v}_m(a, s(a), \epsilon)$.
+    \item The conditional choice probability is thus $\Pr(d_m(a) = 1 | a, s(a)) = \frac{\exp(\tilde{u}_m(a, s(a)))}{\sum_{m'} \exp(\tilde{u}_{m'}(a, s(a)))}$.
 \end{itemize}
-Since we are in the finite horizon setting, the value function at the terminal period is $V(a,s(a),\nu) = u(a,s(a))+\nu(a,s(a))$. Fixing the parameters, and given a state $(a,s(a))$, we can solve recursively for the continuation value function $\tilde{v}_m(a,s(a))$ and the conditional choice probability $\Pr(d_m(a)=1|a,s(a))$ simulating the preference shock, one can obtain the choice $m$ at each period.Therefore, taking the simulated choice $m$ at each period, one can compute moments. The estimation is then to minimize the distance between the simulated moments and moments fromt the data.
+Fixing the parameters, and given a state $(a, s(a))$, we can solve recursively (starting from the terminal period) for the continuation value function $\tilde{v}_m(a, s(a))$ and the conditional choice probability $\Pr(d_m(a) = 1 | a, s(a))$. Second, By simulating the preference shock, one can obtain the choice $m$ at each period. Therefore, taking the simulated choice $m$ at each period, one can compute moments. Lastly, the estimation is then to minimize the distance between the simulated moments and moments from the data.
 
+\subsection{(Nonparametric) Identification}
 
+Up til this point, I haven't linked the the what we have learned from \citet{hu2012nonparametric} to the context of the paper. First, let's recall the set up in \citet{hu2012nonparametric}.
+Focusing only on the choice variable $Y_t$ and the latent type $X^*_t$, and take at least 4 periods $Y_1, Y_2,Y_3,Y_4$, their arguments allow us to identify the the distribution of $Y_4|Y_3,X_3^*$ which is the conditional choice probability. In addition, one can identify the transition probability (law of motion of the latent type) $X_4^*|Y_3,X_3^*$. Two main assumptions needed to decompose the matrix $M_{Y_4,y_3,y_2,Y_1}$ is the Markovian property and the limited feedback condition. That is 
+\begin{enumerate}
+    \item (Markov) Conditional on the current $d(a),s(a),k(a)$, the future $d(a+1),s(a+1),k(a+1)$ is independent of the past $d(a-1),s(a-1),k(a-1)$
+    \item (Limited Feedback) Current choice and state $(d(a),s(a))$ only depends on last choice and state $(d(a-1),s(a-1))$ and current type $k(a)$:  $(d(a),s(a))\perp k(a-1)|d(a-1),s(a-1),k(a)$
+\end{enumerate}
+The second assumption can be graphically represented in figure~\ref{fig:ass}. The assumption is quite weak and can be verified with the structural model. 
+
+Moreover, the structural model in the paper imposes more restrction on the feedback condition such that it satisfy an even more restrictive limited feedback condition presented in \citet{hu2017simple}. That is 
+\begin{enumerate}
+    \item Current choice $d(a)$ only depends on current state $s(a)$ and type $k(a)$: $\Pr(d(a)|s(a),k(a),d(a-1),s(a-1),k(a-1))=\Pr(d(a)|s(a),k(a))$
+\item Current type only depends on last type, current state and last state: $\Pr(k(a)|s(a),s(a-1),k(a-1),d(a-1))=\Pr(k(a)|s(a),s(a-1),k(a-1))$
+\end{enumerate}
 
 
 \section{Discussion}
