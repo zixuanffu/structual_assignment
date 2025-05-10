@@ -6,4 +6,5 @@
 ## Summary
 [report](Summary/report_summary.pdf)
 
-## Project
+## Proposal
+[proposal](Proposal/report_proposal.pdf)
