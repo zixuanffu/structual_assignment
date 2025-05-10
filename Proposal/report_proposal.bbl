@@ -1,0 +1,63 @@
+\begin{thebibliography}{}
+
+\bibitem[Aguirregabiria and Mira, 2007]{aguirregabiria2007sequential}
+Aguirregabiria, V. and Mira, P. (2007).
+\newblock Sequential estimation of dynamic discrete games.
+\newblock {\em Econometrica}, 75(1):1--53.
+
+\bibitem[Arcidiacono, 2005]{arcidiacono2005affirmative}
+Arcidiacono, P. (2005).
+\newblock Affirmative action in higher education: How do admission and financial aid rules affect future earnings?
+\newblock {\em Econometrica}, 73(5):1477--1524.
+
+\bibitem[Arcidiacono and Miller, 2008]{arcidiacono2008ccp}
+Arcidiacono, P. and Miller, R.~A. (2008).
+\newblock Ccp estimation of dynamic discrete choice models with unobserved heterogeneity.
+\newblock {\em Manuscript. Duke University}.
+
+\bibitem[Carroll et~al., 2010]{carroll2010identification}
+Carroll, R.~J., Chen, X., and Hu, Y. (2010).
+\newblock Identification and estimation of nonlinear models using two samples with nonclassical measurement errors.
+\newblock {\em Journal of nonparametric statistics}, 22(4):379--399.
+
+\bibitem[Hu, 2008]{hu2008identification}
+Hu, Y. (2008).
+\newblock Identification and estimation of nonlinear models with misclassification error using instrumental variables: A general solution.
+\newblock {\em Journal of Econometrics}, 144(1):27--61.
+
+\bibitem[Hu and Schennach, 2008]{hu2008instrumental}
+Hu, Y. and Schennach, S.~M. (2008).
+\newblock Instrumental variable treatment of nonclassical measurement error models.
+\newblock {\em Econometrica}, 76(1):195--216.
+
+\bibitem[Hu and Shum, 2012]{hu2012nonparametric}
+Hu, Y. and Shum, M. (2012).
+\newblock Nonparametric identification of dynamic models with unobserved state variables.
+\newblock {\em Journal of Econometrics}, 171(1):32--44.
+
+\bibitem[Hu et~al., 2017]{hu2017simple}
+Hu, Y., Shum, M., Tan, W., and Xiao, R. (2017).
+\newblock A simple estimator for dynamic models with serially correlated unobservables.
+\newblock {\em Journal of Econometric Methods}, 6(1):20150011.
+
+\bibitem[Kasahara and Shimotsu, 2009]{kasahara2009nonparametric}
+Kasahara, H. and Shimotsu, K. (2009).
+\newblock Nonparametric identification of finite mixture models of dynamic discrete choices.
+\newblock {\em Econometrica}, 77(1):135--175.
+
+\bibitem[Miller, 1984]{miller1984job}
+Miller, R.~A. (1984).
+\newblock Job matching and occupational choice.
+\newblock {\em Journal of Political economy}, 92(6):1086--1120.
+
+\bibitem[Pakes, 1986]{pakes1986patents}
+Pakes, A. (1986).
+\newblock Patents as options: Some estimates of the value of holding european patent stocks.
+\newblock {\em Econometrica}, 54(4):755--784.
+
+\bibitem[Todd and Zhang, 2020]{todd2020dynamic}
+Todd, P.~E. and Zhang, W. (2020).
+\newblock A dynamic model of personality, schooling, and occupational choice.
+\newblock {\em Quantitative Economics}, 11(1):231--275.
+
+\end{thebibliography}

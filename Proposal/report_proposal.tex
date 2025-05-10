@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\usepackage{setspace}
+\linespread{1.2}
+\usepackage{fullpage,graphicx,psfrag,amsmath,amsfonts,verbatim}
+\usepackage[small,bf]{caption}
+\usepackage{amsthm}
+% \usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+\usepackage{bbm} % for the indicator function to look good
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{fancyhdr} % for the header
+\usepackage{booktabs} % for regression table display (toprule, midrule, bottomrule)
+\usepackage{adjustbox} % for regression table display
+\usepackage{threeparttable} % to use table notes
+\usepackage{natbib} % for bibliography
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\input newcommand.tex
+\bibliographystyle{apalike}
+% \setlength{\parindent}{0pt} % remove the automatic indentation
+
+\title{\textbf{Partially observed dynamic model}}
+\author{Fu Zixuan}
+\date{\today}
+
+\begin{document}
+\maketitle
+% \thispagestyle{empty}
+% \begin{abstract}
+
+% \end{abstract}
+
+% \newpage
+% \thispagestyle{empty}
+% \tableofcontents
+% \newpage
+
+% \setcounter{page}{1}
+
+\section{Introduction}
+A dynamic model of schooling and occupation choice has existed for a long time. Since its inception, a richer set of elements has been incorporated into the model, either from a data perspective or through the relaxation of assumptions. Specifically, in the early days, with panel data containing individual characteristics, schooling decisions, and labor market outcomes, researchers typically estimated a choice probability in the form of $f_{y_t \mid x_t, c}$. Later, realizing that $x_t$ and $c$ only capture observed differences between individuals, researchers became more ambitious in recognizing unobserved differences—modeled as a latent type $z_t$. The conditional choice probability then became $f_{y_t \mid x_t, c, z_t}$.
+
+In the case of a time-invariant latent type $z_t=z$, specific estimation methods have been proposed \citep{aguirregabiria2007sequential}, and identification arguments have been developed in \cite{kasahara2009nonparametric}. To further relax this assumption and allow $z_t$ to be time-varying, estimation methods are introduced by \citet{arcidiacono2008ccp}, and identification arguments are discussed in \citet{hu2012nonparametric}. This kind of model is commonly applied in different settings, from \citet{miller1984job} on occupation choice and \citet{pakes1986patents} on patent choice, to \citet{arcidiacono2005affirmative} on schooling decision.
+
+Another direction of extension is to enrich the set of data variables that can affect individuals’ choices. Beyond socioeconomic status, distance, and cognitive ability, what else can influence students' schooling and occupational decisions? The paper by \citet{todd2020dynamic} explores the non-cognitive dimension—specifically, personality traits measured over an extended period in their dataset. One might treat these measurements as the true values, but a critique is that personality, unlike other characteristics, is often measured with noise. Therefore, the authors treat personality—one of the observed state variables, denoted $X^M$—as a noisy measurement of the true $X$, with an error term $\zeta$ that is independent of $X$ and normally distributed.
+
+However, what assumptions can be further relaxed in this modeling framework? For example, in many of the seminal papers on errors-in-variables models \citep{hu2008identification, hu2008instrumental, carroll2010identification}, some form of repeated measurements of the true underlying variable is a common approach to address the issue. The key question is to define what constitutes a valid repeated measurement of unobserved varaibles, and how we can make use of them, albeit noisy, to recover the model primitives, which would involve the unobserved variables.
+
+Motivated by the assumptions made in \citet{todd2020dynamic}, it is not immediately clear whether one can recover $f_{Y_t \mid X_t, Z_t}$ when only a panel of $(Y_t, X^M_t)$ is observed. Since both $X_t$ and its measurement $X^M_t$ are time-varying, my initial intuition is that the model primitives may not be identified. If that is not the case, what additional assumptions would be required?
+
+In the following section, I will start from a simplified case and then move on to the one corresponding to \citet{todd2020dynamic}. Unfortunately, I have not yet succeeded in identifying even the simplest case. Some preliminary investigations and discussions will be provided in the final section.
+
+
+\section{Review and Overview}
+
+Approximately folloiwng the notation in \citet{hu2012nonparametric}, we let
+$W_t$ to represent the observed variables, $Z_t$ as the latent type. The model is characterized by the folloiwng decompostion
+\begin{equation}\label{eq:hushum2012}
+    f_{W_t,Z_t\mid W_{t-1},Z_t}=f_{W_t|W_{t-1},Z_t}f_{Z_t|W_{t-1},Z_{t-1}}
+\end{equation}
+
+\citet{} has shown that without the extra monotonicity assumption, the $ f_{W_t,Z_t\mid W_{t-1},Z_t}$ are identified up to a common permutation/ordering of the latent variable $Z_t$ for all $t$.
+
+In the context of Markovian dynamic optimzation model, where the observed variable $W_t=(Y_t,M_t)$, the above probability can be further decomposed. A caveat here is that state variable $M_t$ is realized after the transition of latent type $Z_t$.
+\begin{equation}\label{eq:hushum2012_mdp}
+    f_{Y_t,M_t|Y_{t-1},M_{t-1},Z_t}f_{Z_t|Y_{t-1},M_{t-1},Z_{t-1}}=f_{Y_t|M_t,Z_t}f_{M_t|Y_{t-1},M_{t-1},Z_t}f_{Z_t|Y_{t-1},M_{t-1},Z_{t-1}}
+\end{equation}
+
+This is the form of CCP $\times$ state transition $\times$ type transition.
+
+In \citet{todd2020dynamic}, \ref{eq:hushum2012}, thus \ref{eq:hushum2012_mdp}, are not satisfied because here the assumption is that latent type transition after the state variable $M_t$ is realized. Therefore, the Markovian dynamic optimization becomes
+\begin{equation}\label{eq:huetal2015_mdp}
+    f_{Y_t|M_t,Z_t}f_{M_t|Y_{t-1},M_{t-1},Z_{t-1}}f_{Z_t|Y_{t-1},M_{t-1},Z_{t-1},M_t}
+\end{equation}
+
+The identification of the model primitives is not entirely nested within \citet{hu2012nonparametric} but is shown in \citet{hu2017simple}.\footnote{Previously, in my presentation, I thought this model fits exactly under the previous ones.}
+
+Though in both Markovian decision process, the conditional choice probability\footnote{Or the \textit{output/emission} probability in the hidden Markov model setup.} is the same, the differences lies in the order of realization of the observed and the latent.
+
+As far as I am concerned, there is some arbitrariness in deciding which one to follow. Although a natural question would be to ask whether there is a way to test for this type of assumption? Since this is not the main focus of the proposal, I will not dive into the question.
+
+However, by recognizing the possible measurement issue in one of the observed state variable, e.g., personality, we can modify the above variables such that $M_t$ is the measurement of the true state variable $X_t$. Therefore, the model is endowed with the following primitives
+\begin{equation}
+    \begin{split}
+        f_{Y_t, X_t, Z_t\mid Y_{t-1},X_{t-1}, Z_{t-1}} & =\underbrace{f_{Y_t|X_t,Z_t}}_{\text{CCP}}\underbrace{f_{X_t|Y_{t-1},X_{t-1}}}_{\text{state transition}}\underbrace{f_{Z_t|Y_{t-1},X_{t-1},Z_{t-1},X_t}}_{\text{type transition}} \\
+                                                       & =f_{Y_t|X_t,Z_t}f_{X_t|Y_{t-1},X_{t-1}}\underbrace{f_{Z_t|X_{t-1},Z_{t-1},X_t}}_{\text{not depend on $Y_{t-1}$}}                                                                  \\
+    \end{split}
+\end{equation}
+
+As can be seen, the above decomposition does not involve the measurement $M_t$, which is undeirable for further identification arguments.
+
+Now I move to the first simplified model where there is no latent type $ Z_t$. The second would be to have a time-invariant latent type $Z_t=z$ before moving onto the full-fledged case as in \citet{todd2020dynamic}.
+
+\paragraph{Toy Model 1} For a Markovian decision process without latent types, the model is characterized by the following primitives:
+\begin{itemize}
+    \item $f_{Y_t \mid X_t}$: the conditional choice probability given the (unobserved) true state,
+    \item $f_{X_t \mid X_{t-1}, Y_{t-1}}$: the transition probability of the latent state variable,
+    \item $f_{M_t \mid X_t}$: the measurement error distribution, where $M_t$ is a noisy observation of the true state $X_t$.
+\end{itemize}
+
+In addition to the Markovian structure on $(Y_t, X_t)$, we impose the following assumptions concerning the measurement process:
+\begin{itemize}
+    \item $f_{Y_t \mid X_t, M_t} = f_{Y_t \mid X_t}$: the measurement $M_t$ does not provide additional information about the decision outcome $Y_t$ once the true state $X_t$ is known,
+    \item $f_{M_t \mid X_t, M_{t-1}} = f_{M_t \mid X_t}$: current measurements are conditionally independent of past measurements given the true state. This again mirrors the assumption in \citet{hu2008identification}. A natural question is whether $M_{t-1}$ can be used as an instrument for $M_t$. Translating the rank and invertibility conditions from \citet{hu2008identification} to this context, I need to verify whether the assumptions $\operatorname{Rank}(f_{X_t \mid M_{t-1}}) = k$ and the invertibility of $f_{M_t \mid X_t}$ are consistent with the model’s structure\footnote{Not to be internally refuted by the model.} and can thus be imposed,
+    \item $f_{M_t \mid X_t} = f_{M_{t+1} \mid X_{t+1}}$: the measurement error distribution is time-invariant. This is a rather intuitive restriction that may or may not be necessary for identification.
+\end{itemize}
+
+We consider the joint distribution of observables under this measurement model. With $X_t$ denoting the true latent state and $M_t$ its noisy observation, the distribution of the panel $(Y_t, M_t, M_{t-1}, Y_{t-1})$ is given by:
+
+\begin{equation*}
+    f_{Y_t, M_t, M_{t-1}, Y_{t-1}} = \sum_{x_t} f_{Y_t \mid x_t} \cdot f_{M_t \mid x_t} \cdot f_{x_t, M_{t-1}, Y_{t-1}}
+\end{equation*}
+
+
+\begin{equation*}
+    \begin{split}
+        f_{X_t, M_{t-1}, Y_{t-1}} & = \sum_{x_{t-1}} f_{X_t, M_{t-1},Y_{t-1}\mid X_{t-1}}\cdot f_{x_{t-1}} \\
+                                  & = \sum_{x_{t-1}}f_{X_t\mid X_{t-1},Y_{t-1}}\,
+        f_{M_{t-1}\mid X_{t-1}}\,
+        f_{Y_{t-1}\mid X_{t-1}} \cdot f_{x_{t-1}}
+    \end{split}
+\end{equation*}
+
+% Together, we have:
+% \begin{equation*}
+%     f_{Y_t,M_t,M_{t-1},Y_{t-1}}
+%     =\sum_{x_{t-1}}\sum_{x_t}
+%     f_{Y_t\mid x_t}\,
+%     f_{M_t\mid x_t}\,
+%     f_{x_t\mid x_{t-1},Y_{t-1}}\,
+%     f_{M_{t-1}\mid x_{t-1}}\,
+%     f_{Y_{t-1}\mid x_{t-1}}\,
+%     f_{x_{t-1}} .
+% \end{equation*}
+
+In fact, if a stationary distribution is assumed for each $t$, and if $M_{t-1}$ can serve as a valid instrument for $X_t$, then the only additional element beyond the setup in \citet{hu2008identification} is the state transition probability $f_{X_t \mid X_{t-1}, Y_{t-1}}$, which I aim to identify using panel data.
+
+
+\paragraph{Toy Models 2 \& 3}
+
+By adding back a constant latent type $Z_t = Z$, the model becomes:
+\begin{itemize}
+    \item $f_{Y_t \mid X_t, Z}$: the conditional choice probability given the (unobserved) true state and fixed type,
+    \item $f_{X_t \mid X_{t-1}, Y_{t-1}, Z}$: the transition probability of the latent state variable, conditional on the previous state, action, and type.
+\end{itemize}
+
+For a time-varying latent type $Z_t$, the model admits two versions depending on the timing of type and state realization, as discussed earlier. I focus on the version studied in \citet{hu2017simple}, where the type is realized **after** the state. An additional assumption is imposed:
+
+$$
+    f_{Z_t \mid Y_{t-1}, X_{t-1}, Z_{t-1}, X_t} = f_{Z_t \mid X_{t-1}, Z_{t-1}, X_t}
+$$
+
+which excludes a direct dependence of $Z_t$ on past action $Y_{t-1}$, conditional on past and current states and previous type.
+
+\section{Discussion}
+
+Starting from the simplest case, my goal is to identify the additional component of the model—namely, the state transition probability $f_{X_t \mid X_{t-1}, Y_{t-1}}$—using the panel data $(Y_t, M_t)$. This component is absent in \citet{hu2008identification}, where there is no dynamic evolution.
+
+Once this is achieved, introducing a constant latent type $Z$ still appears to be a significant leap, as it introduces an additional unobserved variable. In terms of model primitives, this means that—on top of identifying the state transition—we must also identify the \textbf{type distribution}. It is not clear whether the data contain sufficient variation or structure to identify both components.
+
+Going a step further and allowing the type to vary over time (i.e., letting $Z_t$ evolve) makes the identification problem even more ambitious. An additional object to be identified is the \textbf{type transition probability}. I am even less optimistic about this case. I am not sure either whether introducing two state variables—say $X^1$ and $X^2$, where one is noisly measured while the other is well observed—would help.
+
+Perhaps taking a step in the opposite direction, suppose that the measurement error is independent of the true state, i.e., \( M_t = X_t + \zeta \), where \( \zeta \) is independent of \( X_t \). Under this assumption, is the model identified? If independence alone is not sufficient, is assuming normality of the measurement error—i.e., \( \zeta \sim \mathcal{N}(0, \sigma^2) \)—enough to ensure identification?
+
+\pagebreak \newpage \bibliography{../References/ref.bib}
+
+\end{document}
+
