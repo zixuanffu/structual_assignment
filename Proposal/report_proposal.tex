@@ -84,7 +84,7 @@ However, by recognizing the possible measurement issue in one of the observed st
 \begin{equation}
     \begin{split}
         f_{Y_t, X_t, Z_t\mid Y_{t-1},X_{t-1}, Z_{t-1}} & =\underbrace{f_{Y_t|X_t,Z_t}}_{\text{CCP}}\underbrace{f_{X_t|Y_{t-1},X_{t-1}}}_{\text{state transition}}\underbrace{f_{Z_t|Y_{t-1},X_{t-1},Z_{t-1},X_t}}_{\text{type transition}} \\
-                                                       & =f_{Y_t|X_t,Z_t}f_{X_t|Y_{t-1},X_{t-1}}\underbrace{f_{Z_t|X_{t-1},Z_{t-1},X_t}}_{\text{not depend on $Y_{t-1}$}}                                                                  \\
+        & =f_{Y_t|X_t,Z_t}f_{X_t|Y_{t-1},X_{t-1}}\underbrace{f_{Z_t|X_{t-1},Z_{t-1},X_t}}_{\text{not depend on $Y_{t-1}$}}                                                                  \\
     \end{split}
 \end{equation}
 
@@ -116,28 +116,27 @@ We consider the joint distribution of observables under this measurement model. 
 \begin{equation*}
     \begin{split}
         f_{X_t, M_{t-1}, Y_{t-1}} & = \sum_{x_{t-1}} f_{X_t, M_{t-1},Y_{t-1}\mid X_{t-1}}\cdot f_{x_{t-1}} \\
-                                  & = \sum_{x_{t-1}}f_{X_t\mid X_{t-1},Y_{t-1}}\,
+        & = \sum_{x_{t-1}}f_{X_t\mid X_{t-1},Y_{t-1}}\,
         f_{M_{t-1}\mid X_{t-1}}\,
         f_{Y_{t-1}\mid X_{t-1}} \cdot f_{x_{t-1}}
     \end{split}
 \end{equation*}
 
-% Together, we have:
-% \begin{equation*}
-%     f_{Y_t,M_t,M_{t-1},Y_{t-1}}
-%     =\sum_{x_{t-1}}\sum_{x_t}
-%     f_{Y_t\mid x_t}\,
-%     f_{M_t\mid x_t}\,
-%     f_{x_t\mid x_{t-1},Y_{t-1}}\,
-%     f_{M_{t-1}\mid x_{t-1}}\,
-%     f_{Y_{t-1}\mid x_{t-1}}\,
-%     f_{x_{t-1}} .
-% \end{equation*}
+Together, we have:
+\begin{equation*}
+    f_{Y_t,M_t,M_{t-1},Y_{t-1}}
+    =\sum_{x_{t-1}}\sum_{x_t}
+    f_{Y_t\mid x_t}\,
+    f_{M_t\mid x_t}\,
+    f_{x_t\mid x_{t-1},Y_{t-1}}\,
+    f_{M_{t-1}\mid x_{t-1}}\,
+    f_{Y_{t-1}\mid x_{t-1}}\,
+    f_{x_{t-1}} .
+\end{equation*}
 
-In fact, if a stationary distribution is assumed for each $t$, and if $M_{t-1}$ can serve as a valid instrument for $X_t$, then the only additional element beyond the setup in \citet{hu2008identification} is the state transition probability $f_{X_t \mid X_{t-1}, Y_{t-1}}$, which I aim to identify using panel data.
+In fact, if a stationary distribution is assumed for each $t$, and if $M_{t-1}$ can serve as a valid instrument for $X_t$, then the only additional element beyond the setup in \citet{hu2008identification} is the state transition probability $f_{X_t \mid X_{t-1}, Y_{t-1}}$, which I aim to identify using panel data. Once the (staionary) choice probability $f_{Y_t|X_t}$ and the measurement error distribution $f_{M_t|X_t}$ are identified, the state transition probability can be obtained by inverting the above equation.  The only unknown is $f_{X_t|X_{t-1},Y_{t-1}}$. However, I am not sure whether the issue of ordering the latent state variable $X_t$ is a concern here.
 
-
-\paragraph{Toy Models 2 \& 3}
+\paragraph{Toy Models 2}
 
 By adding back a constant latent type $Z_t = Z$, the model becomes:
 \begin{itemize}
@@ -145,13 +144,24 @@ By adding back a constant latent type $Z_t = Z$, the model becomes:
     \item $f_{X_t \mid X_{t-1}, Y_{t-1}, Z}$: the transition probability of the latent state variable, conditional on the previous state, action, and type.
 \end{itemize}
 
-For a time-varying latent type $Z_t$, the model admits two versions depending on the timing of type and state realization, as discussed earlier. I focus on the version studied in \citet{hu2017simple}, where the type is realized **after** the state. An additional assumption is imposed:
+My attempt is to first identify the
+$f_{Y_t, M_t\mid Y_{t-1}, M_{t-1}, Z}$ by following the (constructive) arguement in \citet{higgins2023identification}. Once we have the above element, can I apply the same argument as in Toy Model 1 where everything is conditional on the type $Z=z$? In this case, for each type $z$, we take the the distribution $f_{Y_t, M_t\mid Y_{t-1}, M_{t-1}, Z=z}$ (or the joint distribution $f_z(Y_t, M_t\mid Y_{t-1}, M_{t-1})$) and recover the choice probability $f_{Y_t\mid X_t, Z=z}$ and the state transition probability $f_{X_t\mid X_{t-1}, Y_{t-1}, Z=z}$. To the contrary of model 1, there is a need to ensure that for each type $z$, the ordering of the true state variable $X_t$ is the same acrossing all types. Is this automatically ensured by some kind of joint decomposition or do we need to impose additional monoticity assumption?
+
+\paragraph{Toy Model 3}
+For a time-varying latent type $Z_t$, the model admits two versions depending on the timing of type and state realization, as discussed earlier. I focus on the version studied in \citet{hu2017simple}, where the type is realized \emph{after} the state. An additional assumption is imposed:
 
 $$
     f_{Z_t \mid Y_{t-1}, X_{t-1}, Z_{t-1}, X_t} = f_{Z_t \mid X_{t-1}, Z_{t-1}, X_t}
 $$
 
 which excludes a direct dependence of $Z_t$ on past action $Y_{t-1}$, conditional on past and current states and previous type.
+
+First, in \citet{hu2017simple}, the ordering issue is resolved by an additional monotonicity assumption, as in \citet{hu2012nonparametric}. Therefore, I would need to adapt the argument in \citet{higgins2024learning} to show that this assumption is not necessary either.
+
+Second, for the two models under consideration (\ref{eq:hushum2012_mdp} and \ref{eq:huetal2015_mdp}), new challenges arise. The idea is to first treat \( M \) as the true state variable and apply existing identification methods accordingly. Then, given the \textit{mismeasured} version of the choice probability \( f_{Y_t \mid M_t, Z_t} \), state transition probability, and type transition probability, we ask whether it is possible to recover the true underlying primitives—those in which \( M \) is replaced by the true latent state \( X \).
+
+Essentially, this is a two-step procedure. The first step is to identify the \textit{mismeasured} model primitives. The second step is to recover the true model primitives. This paper focuses on the second step, as the first step has already been addressed in the existing literature. My conjecture is that The second step involves more severe issues related to the ordering of unobserved variables, which require further investigation.
+
 
 \section{Discussion}
 

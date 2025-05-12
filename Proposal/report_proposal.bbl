@@ -20,6 +20,16 @@ Carroll, R.~J., Chen, X., and Hu, Y. (2010).
 \newblock Identification and estimation of nonlinear models using two samples with nonclassical measurement errors.
 \newblock {\em Journal of nonparametric statistics}, 22(4):379--399.
 
+\bibitem[Higgins and Jochmans, 2023]{higgins2023identification}
+Higgins, A. and Jochmans, K. (2023).
+\newblock Identification of mixtures of dynamic discrete choices.
+\newblock {\em Journal of Econometrics}, 237(1):105462.
+
+\bibitem[Higgins and Jochmans, 2024]{higgins2024learning}
+Higgins, A. and Jochmans, K. (2024).
+\newblock Learning markov processes with latent variables.
+\newblock {\em Econometric Theory}, pages 1--13.
+
 \bibitem[Hu, 2008]{hu2008identification}
 Hu, Y. (2008).
 \newblock Identification and estimation of nonlinear models with misclassification error using instrumental variables: A general solution.
